@@ -3,7 +3,7 @@
 import { memo } from "react";
 import {DragDropContext, Droppable, DropResult} from "react-beautiful-dnd";
 import {useEffect} from "react";
-import {useBoardStore} from "../../store/BoardStore";
+import {useBoardStore} from "@/store/BoardStore";
 import {Column as IColumn} from "@/typings";
 import {Column} from "@/components/Column";
 export const Board = memo(() => {
