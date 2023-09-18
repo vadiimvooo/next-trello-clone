@@ -5,12 +5,44 @@ import {MagnifyingGlassIcon} from "@heroicons/react/20/solid";
 import Avatar from "react-avatar";
 import {GPT} from "@/components/GPT";
 import {useBoardStore} from "@/store/BoardStore";
+import {useEffect, useState} from "react";
+import fetchSuggestion from "../../lib/fetchSuggestion";
+import toastr from "toastr";
 
 export const Header = () => {
-    const [searchString, setSearchString] = useBoardStore((state) => [
+    const [board, searchString, setSearchString] = useBoardStore((state) => [
+        state.board,
         state.searchString,
         state.setSearchString
-    ])
+    ]);
+    const [loading, setLoading] = useState<boolean>(false);
+    const [suggestion, setSuggestion] = useState<string>("");
+
+    useEffect(() => {
+        if (board.columns.size === 0) return;
+        setLoading(true);
+
+        const fetchSuggestionFunc = async () => {
+            try {
+                const suggestion = await fetchSuggestion(board);
+                setSuggestion(suggestion);
+                setLoading(false);
+            } catch (error) {
+                const typedError = error as Error
+                toastr.error(typedError.message, "Fetching error", {
+                    closeButton: true,
+                    progressBar: true,
+                    timeOut: 3000,
+                    positionClass: "toast-top-right",
+                    showMethod: "fadeIn",
+                    hideMethod: "fadeOut",
+                });
+            }
+        }
+
+
+        fetchSuggestionFunc();
+    }, [board])
 
     return (
         <header>
@@ -54,8 +86,8 @@ export const Header = () => {
                 </div>
             </div>
 
-            <div className="p-2">
-                <GPT/>
+            <div className="p-2 flex justify-center">
+                <GPT loading={loading} suggestion={suggestion}/>
             </div>
         </header>
     );
