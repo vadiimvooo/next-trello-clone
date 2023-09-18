@@ -1,5 +1,4 @@
 // @ts-ignore
-
 import { Client, Account, Databases, Storage, ID } from "appwrite";
 import * as process from "process";
 
