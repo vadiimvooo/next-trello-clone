@@ -6,7 +6,7 @@ export interface Board {
 
 type TypedColumn = "todo" | "inprogress" | "done"
 
-interface Column {
+export interface Column {
     id: TypedColumn;
     todos: Todo[]
 }
