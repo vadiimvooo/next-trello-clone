@@ -10,6 +10,7 @@ const account = new Account(client);
 const databases = new Databases(client);
 const storage = new Storage(client)
 
+// @ts-ignore
 export {
     client,
     account,
