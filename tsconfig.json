@@ -22,7 +22,8 @@
     "paths": {
       "@/*": ["./src/*"],
       "@/components/*": ["./components/*"],
-      "@/typings": ["./typings.d.ts"]
+      "@/typings": ["./typings.d.ts"],
+      "@/store/*": ["./store/*"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
