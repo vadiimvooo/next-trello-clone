@@ -1,6 +1,7 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import React from "react";
+import {Modal} from "@/components/Modal";
 
 export const metadata: Metadata = {
   title: 'Trello 2.0 Clone',
@@ -14,7 +15,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="bg-[#F5F6F8]">{children}</body>
+      <body className="bg-[#F5F6F8]">
+      {children}
+      <Modal />
+      </body>
     </html>
   )
 }
